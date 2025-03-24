@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace FitnessTracker.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/workout")]
     public class WorkoutController : ControllerBase
     {
         [HttpGet("summary")]
-        public IActionResult GetWorkoutSummary()
+        public IActionResult GetSummary()
         {
-            // Simulated workout stats
             var summary = new
             {
                 TotalWorkouts = 18,
