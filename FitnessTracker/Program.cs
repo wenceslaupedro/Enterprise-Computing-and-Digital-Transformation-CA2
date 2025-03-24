@@ -1,10 +1,15 @@
+using FitnessTracker.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-//  Add MVC and API controllers
+// Add MVC and API controllers
 builder.Services.AddControllersWithViews(); // For Views (MVC)
 builder.Services.AddControllers();          // For API Controllers
 
-//  CORS Setup (Allow all origins — for development)
+// Add HttpClient and WorkoutApiService
+builder.Services.AddHttpClient<WorkoutApiService>();
+
+// CORS Setup (Allow all origins — for development)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -17,7 +22,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-//  Environment-specific config
+// Environment-specific config
 if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
@@ -28,16 +33,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//  Enable CORS and Authorization
+// Enable CORS and Authorization
 app.UseCors("AllowAll");
 app.UseAuthorization();
 
-//  Route for MVC controllers (e.g. HomeController)
+// Route for MVC controllers (e.g. HomeController)
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//  Route for API controllers
+// Route for API controllers
 app.MapControllers();
 
 app.Run();
