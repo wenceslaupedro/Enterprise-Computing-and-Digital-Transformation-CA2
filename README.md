@@ -55,7 +55,7 @@ cd fitness-tracker
 
 1. Log in to the Azure Portal
 2. Create a new SQL Database with the following details:
-  - Database name (e.g., `FitnessTrackerAzure`)
+  - Database name (e.g., `WorkoutTrackerAzure`)
   - Create a new server or use an existing one
   - Configure server name, admin login, and password
   - Select an appropriate pricing tier
@@ -75,7 +75,7 @@ cd fitness-tracker
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=tcp:yourserver.database.windows.net,1433;Initial Catalog=FitnessTrackerAzure;Persist Security Info=False;User ID=yourusername;Password=yourpassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    "DefaultConnection": "Server=tcp:yourserver.database.windows.net,1433;Initial Catalog=WorkoutTrackerAzure;Persist Security Info=False;User ID=yourusername;Password=yourpassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   },
   "Logging": {
     "LogLevel": {
@@ -104,7 +104,7 @@ dotnet run --project WebApi
 ### 4. Run the Frontend Application
 
 ```bash
-dotnet run --project FitnessTrackerApp
+dotnet run --project WorkoutTrackerApp
 ```
 
 ## Deployment
