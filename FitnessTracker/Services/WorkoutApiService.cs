@@ -19,7 +19,7 @@ namespace FitnessTracker.Services
         {
             try
             {
-                var apiUrl = "http://localhost:5190/api/workout/summary"; // Match your running backend port
+                var apiUrl = "http://localhost:5000/api/workout/summary"; // Match your running backend port
                 var summary = await _httpClient.GetFromJsonAsync<WorkoutSummary>(apiUrl);
                 return summary;
             }
