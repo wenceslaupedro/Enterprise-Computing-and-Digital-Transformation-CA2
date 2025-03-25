@@ -1,0 +1,34 @@
+### Get All Users
+GET https://localhost:5001/api/users
+Accept: application/json
+
+### Get User by ID
+GET https://localhost:5001/api/users/1
+Accept: application/json
+
+### Create a New User
+POST https://localhost:5001/api/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "dateOfBirth": "1990-01-01",
+  "joinDate": "2023-10-01"
+}
+
+### Get All Workouts
+GET https://localhost:5001/api/workouts
+Accept: application/json
+
+### Create a New Workout
+POST https://localhost:5001/api/workouts
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "workoutDate": "2023-10-10T10:00:00",
+  "type": "Running",
+  "durationMinutes": 30,
+  "caloriesBurned": 300
+}
