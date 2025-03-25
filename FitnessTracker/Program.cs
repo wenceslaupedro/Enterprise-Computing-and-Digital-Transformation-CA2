@@ -37,12 +37,12 @@ app.UseRouting();
 app.UseCors("AllowAll");
 app.UseAuthorization();
 
-// Route for MVC controllers (e.g. HomeController)
+// Route MVC controllers (HomeController)
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Route for API controllers
+// Route API controllers
 app.MapControllers();
 
 app.Run();

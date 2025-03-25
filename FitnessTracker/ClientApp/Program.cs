@@ -18,13 +18,18 @@ namespace ClientApp
             {
                 var summary = await workoutService.GetWorkoutSummaryAsync();
 
-                if (summary != null)
-                {
-                    Console.WriteLine("Workout Summary:");
-                    Console.WriteLine($"Total Workouts: {summary.TotalWorkouts}");
-                    Console.WriteLine($"Active Days:    {summary.ActiveDays}");
-                    Console.WriteLine($"Skipped Days:   {summary.SkippedDays}");
-                }
+				if (summary != null)
+				{
+   					Console.WriteLine();
+    				Console.WriteLine("+----------------+--------------+");
+    				Console.WriteLine("|     Metric     |    Value     |");
+    				Console.WriteLine("+----------------+--------------+");
+    				Console.WriteLine($"| Total Workouts | {summary.TotalWorkouts,12} |");
+    				Console.WriteLine($"| Active Days    | {summary.ActiveDays,12} |");
+    				Console.WriteLine($"| Skipped Days   | {summary.SkippedDays,12} |");
+    				Console.WriteLine("+----------------+--------------+");
+				}
+
                 else
                 {
                     Console.WriteLine("No summary received from API.");
