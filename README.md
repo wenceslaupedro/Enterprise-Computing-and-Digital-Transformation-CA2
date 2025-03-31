@@ -1,14 +1,14 @@
-# Workout Tracker - C# & .NET 8
+# Workout Tracker - C# & .NET 9
 
 **CA2 Mini Project for Enterprise Computing and Digital Transformation - TUD**
 
 ## Overview
 
-This is a simple fitness tracker project built using C#, .NET 8, and Azure SQL Database. The application allows users to log their workout activity through an interactive calendar.
+This is a simple fitness tracker project built using C#, .NET 9, and Azure SQL Database. The application allows users to log their workout activity through an interactive calendar.
 
 ## Tech Stack
 
-- **Backend:** ASP.NET Core 8 / Web API
+- **Backend:** ASP.NET Core 9 / Web API
 - **Database:** Azure SQL Database
 - **Client:** Web Application (ASP.NET Core MVC)
 - **Cloud Deployment:** AWS, Azure, GCP, or OCI
