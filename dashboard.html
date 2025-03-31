@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Workout Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>Workout Calendar</h1>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+        </header>
+        
+        <div class="calendar-controls">
+            <button id="prevMonth" class="btn">Previous</button>
+            <h2 id="currentMonth">Month Year</h2>
+            <button id="nextMonth" class="btn">Next</button>
+        </div>
+        
+        <div id="calendar" class="calendar-grid"></div>
+        
+        <div class="workout-form">
+            <h3>Add Workout</h3>
+            <form id="addWorkoutForm">
+                <div class="form-group">
+                    <label for="workoutType">Type</label>
+                    <select id="workoutType">
+                        <option value="Running">Running</option>
+                        <option value="Cycling">Cycling</option>
+                        <option value="Swimming">Swimming</option>
+                        <option value="Weight Training">Weight Training</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="workoutDuration">Duration (minutes)</label>
+                    <input type="number" id="workoutDuration" min="1" value="30">
+                </div>
+                <div class="form-group">
+                    <label for="workoutCalories">Calories Burned</label>
+                    <input type="number" id="workoutCalories" min="1" value="300">
+                </div>
+                <div class="form-group">
+                    <label for="workoutDate">Date</label>
+                    <input type="date" id="workoutDate">
+                </div>
+                <button type="submit" class="btn">Add Workout</button>
+            </form>
+        </div>
+    </div>
+    <script src="/js/auth.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
