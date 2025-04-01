@@ -9,12 +9,10 @@ namespace WorkoutTracker
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // Configure CORS
             builder.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -30,16 +28,15 @@ namespace WorkoutTracker
                 });
             });
 
-            // Configure Database
+            //Database
             builder.Services.AddDbContext<WorkoutContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Register WorkoutContext as a scoped service
             builder.Services.AddScoped<WorkoutContext>();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            //HTTP 
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -53,7 +50,7 @@ namespace WorkoutTracker
             app.UseAuthorization();
             app.MapControllers();
 
-            // Configure default page
+            // Configure to default page
             app.MapFallbackToFile("index.html");
 
             app.Run();
