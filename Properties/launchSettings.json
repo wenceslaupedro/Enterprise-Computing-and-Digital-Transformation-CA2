@@ -4,8 +4,8 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7001;http://localhost:5001",
+      "launchUrl": "https://fitnesstracker-h8duafahecdta0aa.westeurope-01.azurewebsites.net/",
+      "applicationUrl": "https://fitnesstracker-h8duafahecdta0aa.westeurope-01.azurewebsites.net/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
