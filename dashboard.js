@@ -1,4 +1,3 @@
-const API_BASE_URL = 'https://fitnesstracker-h8duafahecdta0aa.westeurope-01.azurewebsites.net/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize calendar
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch(`${API_BASE_URL}/workouts`, {
+
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

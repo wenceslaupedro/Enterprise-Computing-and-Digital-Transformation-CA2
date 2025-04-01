@@ -1,6 +1,5 @@
 // Authentication state management
 let isAuthenticated = false;
-const API_BASE_URL = 'https://fitnesstracker-h8duafahecdta0aa.westeurope-01.azurewebsites.net/api';
 
 // Check authentication status on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,7 +26,7 @@ if (loginForm) {
         const password = document.getElementById('loginPassword').value;
 
         try {
-            const response = await fetch(`${API_BASE_URL}/auth/login`, {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -66,7 +65,7 @@ if (signupForm) {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
