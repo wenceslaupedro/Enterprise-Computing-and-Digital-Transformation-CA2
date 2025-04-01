@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "WorkoutTracker": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "https://fitnesstracker-h8duafahecdta0aa.westeurope-01.azurewebsites.net/",
+      "applicationUrl": "https://fitnesstracker-h8duafahecdta0aa.westeurope-01.azurewebsites.net/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+} 

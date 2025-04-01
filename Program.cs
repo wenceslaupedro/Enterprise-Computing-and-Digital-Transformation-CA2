@@ -1,4 +1,6 @@
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Data;
 
@@ -10,43 +12,44 @@ namespace WorkoutTracker
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container
+            //services to the container
             builder.Services.AddControllers();
-            
-            // Add DbContext using SQL Server
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            
-            // Add Swagger/OpenAPI support
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkoutTracker API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Workout Tracker API", Version = "v1" });
             });
 
-            // Add CORS policy
+            //builder for db
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
-                    policy =>
+                options.AddPolicy("AllowAll",
+                    builder =>
                     {
-                        policy.AllowAnyOrigin()
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
                     });
             });
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline
+            //http request
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Workout Tracker API V1");
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseHttpsRedirection();
-            app.UseCors();
+            app.UseCors("AllowAll");
             app.UseAuthorization();
             app.MapControllers();
 
