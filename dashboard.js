@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize calendar
     let currentDate = new Date();
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch('/api/workouts', {
+
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

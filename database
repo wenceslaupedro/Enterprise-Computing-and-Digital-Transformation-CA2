@@ -1,6 +1,6 @@
-CREATE DATABASE FitnessTracker;
+CREATE DATABASE WorkoutTracker;
 
-USE FitenessTracker;
+USE WorkoutTracker;
 
 CREATE TABLE User (
     UserID INT PRIMARY KEY AUTO_INCREMENT,

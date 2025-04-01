@@ -1,14 +1,14 @@
-# Workout Tracker - C# & .NET 8
+# Workout Tracker - C# & .NET 9
 
 **CA2 Mini Project for Enterprise Computing and Digital Transformation - TUD**
 
 ## Overview
 
-This is a simple fitness tracker project built using C#, .NET 8, and Azure SQL Database. The application allows users to log their workout activity through an interactive calendar.
+This is a simple fitness tracker project built using C#, .NET 9, and Azure SQL Database. The application allows users to log their workout activity through an interactive calendar.
 
 ## Tech Stack
 
-- **Backend:** ASP.NET Core 8 / Web API
+- **Backend:** ASP.NET Core 9 / Web API
 - **Database:** Azure SQL Database
 - **Client:** Web Application (ASP.NET Core MVC)
 - **Cloud Deployment:** AWS, Azure, GCP, or OCI
@@ -55,7 +55,7 @@ cd fitness-tracker
 
 1. Log in to the Azure Portal
 2. Create a new SQL Database with the following details:
-  - Database name (e.g., `FitnessTrackerAzure`)
+  - Database name (e.g., `WorkoutTrackerAzure`)
   - Create a new server or use an existing one
   - Configure server name, admin login, and password
   - Select an appropriate pricing tier
@@ -75,7 +75,7 @@ cd fitness-tracker
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=tcp:yourserver.database.windows.net,1433;Initial Catalog=FitnessTrackerAzure;Persist Security Info=False;User ID=yourusername;Password=yourpassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    "DefaultConnection": "Server=tcp:yourserver.database.windows.net,1433;Initial Catalog=WorkoutTrackerAzure;Persist Security Info=False;User ID=yourusername;Password=yourpassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   },
   "Logging": {
     "LogLevel": {
@@ -104,7 +104,7 @@ dotnet run --project WebApi
 ### 4. Run the Frontend Application
 
 ```bash
-dotnet run --project FitnessTrackerApp
+dotnet run --project WorkoutTrackerApp
 ```
 
 ## Deployment
