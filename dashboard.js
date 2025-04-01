@@ -1,10 +1,9 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize calendar
+    //calendar
     let currentDate = new Date();
     updateCalendar(currentDate);
 
-    // Month navigation
+    //month navigation
     document.getElementById('prevMonth').addEventListener('click', () => {
         currentDate.setMonth(currentDate.getMonth() - 1);
         updateCalendar(currentDate);
@@ -15,20 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCalendar(currentDate);
     });
 
-    // Workout form submission
+    //submission form
     const workoutForm = document.getElementById('addWorkoutForm');
     if (workoutForm) {
         workoutForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const workoutData = {
                 type: document.getElementById('workoutType').value,
-                duration: document.getElementById('workoutDuration').value,
-                calories: document.getElementById('workoutCalories').value,
+                duration: parseInt(document.getElementById('workoutDuration').value),
+                calories: parseInt(document.getElementById('workoutCalories').value),
                 date: document.getElementById('workoutDate').value
             };
 
             try {
-
+                const response = await fetch('/api/workouts', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -41,40 +40,68 @@ document.addEventListener('DOMContentLoaded', () => {
                     workoutForm.reset();
                     updateCalendar(currentDate); // Refresh calendar
                 } else {
-                    alert('Failed to add workout. Please try again.');
+                    const errorData = await response.json();
+                    alert(errorData.message || 'Failed to add workout. Please try again.');
                 }
             } catch (error) {
                 console.error('Error adding workout:', error);
+                alert('An error occurred while adding the workout. Please try again.');
             }
         });
     }
 });
 
-function updateCalendar(date) {
+async function updateCalendar(date) {
     const calendar = document.getElementById('calendar');
     const monthDisplay = document.getElementById('currentMonth');
     
-    // Update month display
+    //month update
     monthDisplay.textContent = date.toLocaleString('default', { month: 'long', year: 'numeric' });
     
-    // Clear calendar
+    //calendar clear
     calendar.innerHTML = '';
     
-    // Get first day of month and total days
+    //first day of month and total days
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     
-    // Add empty cells for days before first day of month
+    //days before first day of month
     for (let i = 0; i < firstDay.getDay(); i++) {
         calendar.appendChild(createDayElement(''));
     }
     
-    // Add days of the month
+    //add days of the month
     for (let day = 1; day <= lastDay.getDate(); day++) {
         const dayElement = createDayElement(day);
+        const currentDate = new Date(date.getFullYear(), date.getMonth(), day);
+        
+        //add click handler for date selection
         dayElement.addEventListener('click', () => {
-            document.getElementById('workoutDate').value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            document.getElementById('workoutDate').value = currentDate.toISOString().split('T')[0];
         });
+        
+        //what workouts for this day
+        try {
+            const response = await fetch(`/api/workouts?date=${currentDate.toISOString().split('T')[0]}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                }
+            });
+            
+            if (response.ok) {
+                const workouts = await response.json();
+                if (workouts.length > 0) {
+                    dayElement.classList.add('has-workouts');
+                    const workoutCount = document.createElement('div');
+                    workoutCount.className = 'workout-count';
+                    workoutCount.textContent = `${workouts.length} workout${workouts.length > 1 ? 's' : ''}`;
+                    dayElement.appendChild(workoutCount);
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching workouts:', error);
+        }
+        
         calendar.appendChild(dayElement);
     }
 }
