@@ -22,4 +22,23 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\dashboard.html" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\js\auth.js" />
+    <None Include="wwwroot\js\calendar.js" />
+    <None Include="wwwroot\js\dashboard.js" />
+    <None Include="wwwroot\js\router.js" />
+    <None Include="wwwroot\login.html" />
+    <None Include="wwwroot\signup.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="WorkoutAnalysisClient\obj\Debug\net8.0\WorkoutAnalysisClient.sourcelink.json" />
+    <_ContentIncludedByDefault Remove="WorkoutAnalysisClient\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="WorkoutAnalysisClient\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="WorkoutAnalysisClient\obj\WorkoutAnalysisClient.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+
 </Project>
