@@ -1,8 +1,7 @@
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Data;
+using WorkoutTracker.Services;
 
 namespace WorkoutTracker
 {
@@ -12,46 +11,64 @@ namespace WorkoutTracker
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //services to the container
-            builder.Services.AddControllers();
+            // Add services to the container
+            builder.Services.AddControllersWithViews();
+            
+            // Add DbContext using SQL Server with connection string from configuration
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection")
+                )
+            );
+
+            // Add services
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IWorkoutService, WorkoutService>();
+
+            // Add JWT Authentication
+            builder.Services.AddAuthentication().AddJwtBearer();
+            builder.Services.AddAuthorization();
+
+            // Add Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Workout Tracker API", Version = "v1" });
             });
 
-            //builder for db
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-                    });
-            });
-
             var app = builder.Build();
 
-            //http request
+            // Configure the HTTP request pipeline
             if (app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Workout Tracker API V1");
-                    c.RoutePrefix = string.Empty;
-                });
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Workout Tracker API v1"));
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseCors("AllowAll");
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
             app.UseAuthorization();
-            app.MapControllers();
+
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            // Apply migrations automatically
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                dbContext.Database.Migrate();
+            }
 
             app.Run();
         }
