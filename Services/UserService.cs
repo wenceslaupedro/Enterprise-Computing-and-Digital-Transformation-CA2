@@ -6,16 +6,16 @@ using WorkoutTracker.Models;
 
 namespace WorkoutTracker.Services
 {
-    /// <summary>
+    /// 
     /// Implementation of the IUserService interface
-    /// </summary>
+    /// 
     public class UserService : IUserService
     {
         private readonly ApplicationDbContext _context;
 
-        /// <summary>
+        /// 
         /// Initializes a new instance of the UserService class
-        /// </summary>
+        /// 
         /// <param name="context">The application database context</param>
         public UserService(ApplicationDbContext context)
         {
@@ -51,10 +51,10 @@ namespace WorkoutTracker.Services
 
             // Hash the password
             user.PasswordHash = HashPassword(password);
-            
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            
+
             return user;
         }
 
@@ -70,9 +70,9 @@ namespace WorkoutTracker.Services
             return VerifyPassword(password, user.PasswordHash);
         }
 
-        /// <summary>
+        /// 
         /// Hashes a password using SHA256
-        /// </summary>
+        /// 
         /// <param name="password">The plaintext password</param>
         /// <returns>The hashed password</returns>
         private string HashPassword(string password)
@@ -82,9 +82,9 @@ namespace WorkoutTracker.Services
             return Convert.ToBase64String(hashedBytes);
         }
 
-        /// <summary>
+        /// 
         /// Verifies a password against a hash
-        /// </summary>
+        /// 
         /// <param name="password">The plaintext password</param>
         /// <param name="hash">The hashed password</param>
         /// <returns>True if the password is correct, otherwise false</returns>

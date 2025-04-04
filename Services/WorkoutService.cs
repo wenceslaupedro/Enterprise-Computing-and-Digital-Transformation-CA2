@@ -4,16 +4,16 @@ using WorkoutTracker.Models;
 
 namespace WorkoutTracker.Services
 {
-    /// <summary>
+    /// 
     /// Implementation of the IWorkoutService interface
-    /// </summary>
+    /// 
     public class WorkoutService : IWorkoutService
     {
         private readonly ApplicationDbContext _context;
 
-        /// <summary>
+        /// 
         /// Initializes a new instance of the WorkoutService class
-        /// </summary>
+        /// 
         /// <param name="context">The application database context</param>
         public WorkoutService(ApplicationDbContext context)
         {
@@ -39,8 +39,8 @@ namespace WorkoutTracker.Services
         public async Task<IEnumerable<Workout>> GetWorkoutsByUserIdAndMonthAsync(int userId, int year, int month)
         {
             return await _context.Workouts
-                .Where(w => w.UserId == userId && 
-                            w.Date.Year == year && 
+                .Where(w => w.UserId == userId &&
+                            w.Date.Year == year &&
                             w.Date.Month == month)
                 .OrderBy(w => w.Date)
                 .ToListAsync();
@@ -99,7 +99,7 @@ namespace WorkoutTracker.Services
             var workouts = await _context.Workouts
                 .Where(w => w.UserId == userId)
                 .ToListAsync();
-                
+
             if (!workouts.Any())
             {
                 return new WorkoutAnalysis
@@ -116,13 +116,13 @@ namespace WorkoutTracker.Services
             var totalWorkouts = workouts.Count;
             var totalDuration = workouts.Sum(w => w.Duration);
             var totalCalories = workouts.Sum(w => w.Calories);
-            
-            // Calculate distribution by workout type
+
+
             var typeDistribution = workouts
                 .GroupBy(w => w.Type)
                 .ToDictionary(g => g.Key, g => g.Count());
-                
-            // Calculate monthly statistics
+
+            // Calculate monthly stats
             var monthlyStats = workouts
                 .GroupBy(w => new { w.Date.Year, w.Date.Month })
                 .Select(g => new MonthlyStats

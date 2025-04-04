@@ -28,7 +28,7 @@ namespace WorkoutTracker
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 
-            // Add JWT Authentication
+            // Add JWT Auth
             builder.Services.AddAuthentication(options => 
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -51,13 +51,13 @@ namespace WorkoutTracker
             
             builder.Services.AddAuthorization();
 
-            // Add Swagger for API documentation
+            // Add Swagger API 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Workout Tracker API", Version = "v1" });
                 
-                // Add JWT Authentication to Swagger
+                // JWT Auth to Swagger
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -86,7 +86,7 @@ namespace WorkoutTracker
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline
+            // Config HTTP req pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -96,7 +96,6 @@ namespace WorkoutTracker
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios.
                 app.UseHsts();
             }
 
