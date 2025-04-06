@@ -10,7 +10,7 @@ namespace WorkoutTracker
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container
+            // Register MVC controllers with the DI container
             builder.Services.AddControllers();
             
             // Add DbContext using SQL Server

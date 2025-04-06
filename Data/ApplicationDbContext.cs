@@ -12,6 +12,7 @@ namespace WorkoutTracker.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Workout> Workouts { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,9 +20,9 @@ namespace WorkoutTracker.Data
 
             // Configure relationships
             modelBuilder.Entity<Workout>()
-                .HasOne(w => w.User)
-                .WithMany(u => u.Workouts)
-                .HasForeignKey(w => w.UserId);
+                .HasOne(w => w.Exercise)
+                .WithMany(e => e.Workouts)
+                .HasForeignKey(w => w.ExerciseId);
         }
     }
 }
