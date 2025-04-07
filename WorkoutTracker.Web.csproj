@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>WorkoutTracker</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,6 +40,11 @@
     <_ContentIncludedByDefault Remove="WorkoutAnalysisClient\obj\project.assets.json" />
     <_ContentIncludedByDefault Remove="WorkoutAnalysisClient\obj\project.packagespec.json" />
     <_ContentIncludedByDefault Remove="WorkoutAnalysisClient\obj\WorkoutAnalysisClient.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="WorkoutTracker.API\Controllers\appsettings.Development.json" />
+    <_ContentIncludedByDefault Remove="WorkoutTracker.API\Controllers\appsettings.json" />
+    <_ContentIncludedByDefault Remove="WorkoutTracker.API\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="WorkoutTracker.API\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="WorkoutTracker.API\obj\WorkoutTracker.API.csproj.nuget.dgspec.json" />
   </ItemGroup>
 
 </Project>

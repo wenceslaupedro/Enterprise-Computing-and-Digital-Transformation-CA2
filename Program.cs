@@ -21,7 +21,7 @@ namespace WorkoutTracker
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkoutTracker API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorkoutTracker.Web API", Version = "v1" });
             });
 
             // Add CORS policy
