@@ -44,6 +44,12 @@ namespace WorkoutTracker
             app.UseCors();
             app.UseAuthorization();
             app.MapControllers();
+            app.MapGet("/", context =>
+                {
+                    context.Response.Redirect("/login.html");
+                    return Task.CompletedTask;
+                });
+
             app.Run();
         }
     }
