@@ -1,4 +1,3 @@
-// Models/Workout.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,17 +27,16 @@ namespace WorkoutTracker.Models
         public DateTime Date { get; set; }
 
         [Required]
-        public int Sets { get; set; } = 1;
+        public int Sets { get; set; }
 
         [Required]
-        public int Reps { get; set; } = 1;
+        public int Reps { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(12,3)")]
         public decimal Weight { get; set; } = 0;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // Navigation properties
         public virtual User User { get; set; } = null!;
         public virtual Exercise Exercise { get; set; } = null!;
     }
