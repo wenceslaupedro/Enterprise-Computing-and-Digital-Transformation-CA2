@@ -40,6 +40,7 @@ namespace WorkoutTracker
                 app.UseSwaggerUI();
             }
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseCors();
             app.UseAuthorization();
